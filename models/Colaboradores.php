@@ -50,4 +50,9 @@ class Colaboradores {
         $sql="SELECT id_col,usu_col,pass_col,id_per_col,est_col,id_cap_col FROM tbl_colaborador WHERE usu_col='$login' AND pass_col='$clave' AND est_col='A'";  	
         return ejecutarConsulta($sql);  
     }
+    public function select()
+	{
+		$sql="SELECT * FROM tbl_colaborador WHERE est_col='A'";
+		return ejecutarConsulta($sql);		
+	}
 }

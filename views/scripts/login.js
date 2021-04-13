@@ -10,7 +10,7 @@ $("#frmAcceso").on('submit',function(e)
     {
         if (data!="null")
         {
-            $(location).attr("href","admin/frmCapacitacion.php");            
+            $(location).attr("href","admin/frmCapacitacionColaborador.php");            
         }
         else
         {

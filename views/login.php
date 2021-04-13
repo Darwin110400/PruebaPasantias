@@ -39,7 +39,7 @@
     </div>  
 
         
-        <a href="#">Olvidé mi password</a><br>
+       
         
 
       </div><!-- /.login-box-body -->
@@ -54,7 +54,7 @@
 
     <script type="text/javascript" src="scripts/login.js"></script>
 
-        <script src="../LandingPageMP/js/main.js" type="text/javascript"></script>
+    <script src="../LandingPageMP/js/main.js" type="text/javascript"></script>
   
   </body>
 </html> 

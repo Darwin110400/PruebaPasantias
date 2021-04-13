@@ -1,8 +1,6 @@
-/* global bootbox */
-
 var tabla;
 
-//Función que se ejecuta al inicio
+//Funcion que se ejecute al inicio
 
 function init() {
     mostrarform(false);
@@ -12,29 +10,62 @@ function init() {
     {
         guardaryeditar(e);
     });
+    
+    $.post("../../ajax/ventas.php?op=selectColaborador", function (r) {
+        $("#idcolaborador").html(r);
+        $("#idcolaborador").selectpicker('refresh');
+    })
+    $.post("../../ajax/ventas.php?op=selectCapacitacion", function (r) {
+        $("#idcapacitacion").html(r);
+        $("#idcapacitacion").selectpicker('refresh');
+    })
 }
-function mostrarform(flag) {
 
+//funcion limpiar
+
+function  limpiar() {
+    $("#fec_ven").val(" ");
+    $("#totalventa").val(" ");
+    $("#int_pvn_ven").val(" ");
+    $("#id_tpa_ven").val(" ");
+    $("#id_ciu_ven").val(" ");
+    $("#id_col_ven").val(" ");
+    $("#id_cli_ven").val(" ");
+    $("#imagenmuestra").attr("src","");
+    $("#imagenactual").val("");
+
+
+}
+
+// funcion mostrar formulario
+
+function mostrarform(flag)
+
+{
+    limpiar();
     if (flag) {
+
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
+        $("#btnagregar").hide();
+
     } else {
+
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
     }
 
 }
 
-// funcion para cancelar formulario
-
 function cancelarform() {
+
     limpiar();
     mostrarform(false);
 }
 
-// funcion para listar
-// No olvides convencer al cliente de cambiar JQuery por Fetch o HttpRequest  
+// funcion listar
+
 //Función Listar
 function listar()
 {
@@ -47,7 +78,7 @@ function listar()
                     'copyHtml5',
                     'excelHtml5',
                     'csvHtml5',
-                    'pdf' 
+                    'pdf'
                 ],
                 "ajax":
                         {
@@ -63,29 +94,76 @@ function listar()
                 "order": [[0, "desc"]]//Ordenar (columna,orden)
             }).DataTable();
 }
+function guardaryeditar(e)
+{
+    e.preventDefault(); //No se activarÃ¡ la acciÃ³n predeterminada del evento
+    $("#btnGuardar").prop("disabled", true);
+    var formData = new FormData($("#formulario")[0]);
+
+    $.ajax({
+        url: "../../ajax/capacitacioncolaborador.php?op=guardaryeditar",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+
+        success: function (datos)
+        {
+            bootbox.alert(datos);
+            mostrarform(false);
+            tabla.ajax.reload();
+        }
+
+    });
+    limpiar();
+}
+
+function mostrar(id_capcol) {
+    $.post("../../ajax/capacitacioncolaborador.php?op=mostrar", {id_capcol: id_capcol}, function (data, status)
+    {
+        data = JSON.parse(data);
+        mostrarform(true);
+        $("#id_capcol").val(data.id_ven);
+        $("#idcapacitacion").val(data.id_cap_cap);
+        $("#idcapacitacion").selectpicker('refresh');
+        $("#idcolaborador").val(data.id_cap_col);
+        $("#idcolaborador").selectpicker('refresh');
+    });
+}
+//funcion para desactivar articulo
 function desactivar(id_capcol) {
-    bootbox.confirm("¿Está seguro que desea desactivar esta Capacitacion?", function (result) {
+    bootbox.confirm("¿Esta seguro de querer desactivar la capacitacion del colaborador?", function (result) {
         if (result) {
             $.post("../../ajax/capacitacioncolaborador.php?op=desactivar", {id_capcol: id_capcol}, function (e) {
                 bootbox.alert(e);
                 tabla.ajax.reload();
             });
         }
-
-
-
     });
 }
-
-// Función para activar Rol
+//funcion para activar articulo
 function activar(id_capcol) {
-    bootbox.confirm("¿Está seguro que desea activar esta Capacitacion?", function(result) {
+    bootbox.confirm("¿Esta seguro de querer activar la capacitacion del colaborador?", function (result) {
         if (result) {
-            $.post("../../ajax/capacitacioncolaborador.php?op=activar", {id_capcol : id_capcol}, function (e) {
+            $.post("../../ajax/capacitacioncolaborador.php?op=activar", {id_capcol: id_capcol}, function (e) {
                 bootbox.alert(e);
                 tabla.ajax.reload();
+            });
+
+        }
+    });
+}
+function eliminar(id_capcol){
+    bootbox.confirm("¿Está seguro que desea eliminar de manera definitiva esta Capacitacion del colaborador?", function(result){
+     
+        if(result){
+            $.post("../../ajax/capacitacioncolaborador.php?op=eliminar", {id_capcol:id_capcol},function(e){
+             bootbox.alert(e);
+             tabla.ajax.reload();
             });
         }
     });
 }
+
 init();
+

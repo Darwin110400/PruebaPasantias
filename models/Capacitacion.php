@@ -48,4 +48,9 @@ class Capacitacion {
          $sql="CALL sp_EliminarCapacitacion($id_cap)";
         return ejecutarConsulta($sql);
     }
+    public function select()
+	{
+		$sql="SELECT * FROM tbl_capacitacion WHERE est_cap='A'";
+		return ejecutarConsulta($sql);		
+	}
 }

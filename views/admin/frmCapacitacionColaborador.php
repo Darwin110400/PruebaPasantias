@@ -1,4 +1,4 @@
-<?php 
+<?php
 require '../admin/frmHeader.php';
 ?>
 
@@ -48,6 +48,6 @@ require '../admin/frmHeader.php';
 <?php
 
 require '../admin/frmFooter.php';
-
+  
 ?>
 <script type="text/javascript" src="../scripts/capacitacioncolaborador.js"></script>
