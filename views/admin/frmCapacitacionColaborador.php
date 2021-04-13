@@ -42,14 +42,14 @@ require '../admin/frmHeader.php';
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <input type="hidden" name="id_col" id="id_col">
                             <label>Colaborador:</label>
-                            <select  id="idcolaborador"  name="idcolaborador" class="form-control selectpicker" data-live-search="true" maxlength="256"></select>   
+                            <select  id="id_cap_col"  name="id_cap_col" class="form-control selectpicker" data-live-search="true" maxlength="256"></select>   
                           </div> 
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Capacitacion:</label>
-                            <select id="idcapacitacion" name="idcapacitacion" class="form-control selectpicker" data-live-search="true" maxlength="256"></select>
+                            <select id="id_cap_cap" name="id_cap_cap" class="form-control selectpicker" data-live-search="true" maxlength="256"></select>
                           </div>  
                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
+                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>Guardar</button>
                             
                             <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>

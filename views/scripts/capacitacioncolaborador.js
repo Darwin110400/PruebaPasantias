@@ -12,20 +12,20 @@ function init() {
     });
     
     $.post("../../ajax/capacitacioncolaborador.php?op=selectColaborador", function (r) {
-        $("#idcolaborador").html(r);
-        $("#idcolaborador").selectpicker('refresh');
+        $("#id_cap_col").html(r);
+        $("#id_cap_col").selectpicker('refresh');
     })
     $.post("../../ajax/capacitacioncolaborador.php?op=selectCapacitacion", function (r) {
-        $("#idcapacitacion").html(r);
-        $("#idcapacitacion").selectpicker('refresh');
+        $("#id_cap_cap").html(r);
+        $("#id_cap_Cap").selectpicker('refresh');
     })
 }
 
 //funcion limpiar
 
 function  limpiar() {
-    $("#idcapacitacion").val(" ");
-    $("#idcolaborador").val(" ");
+    $("#id_cap_cap").val(" ");
+    $("#id_cap_col").val(" ");
 
 }
 
@@ -118,10 +118,10 @@ function mostrar(id_capcol) {
         data = JSON.parse(data);
         mostrarform(true);
         $("#id_capcol").val(data.id_ven);
-        $("#idcapacitacion").val(data.id_cap_cap);
-        $("#idcapacitacion").selectpicker('refresh');
-        $("#idcolaborador").val(data.id_cap_col);
-        $("#idcolaborador").selectpicker('refresh');
+        $("#id_cap_cap").val(data.id_cap_cap);
+        $("#id_cap_cap").selectpicker('refresh');
+        $("#id_cap_col").val(data.id_cap_col);
+        $("#id_cap_col").selectpicker('refresh');
     });
 }
 //funcion para desactivar articulo
