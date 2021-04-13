@@ -11,11 +11,11 @@ function init() {
         guardaryeditar(e);
     });
     
-    $.post("../../ajax/ventas.php?op=selectColaborador", function (r) {
+    $.post("../../ajax/capacitacioncolaborador.php?op=selectColaborador", function (r) {
         $("#idcolaborador").html(r);
         $("#idcolaborador").selectpicker('refresh');
     })
-    $.post("../../ajax/ventas.php?op=selectCapacitacion", function (r) {
+    $.post("../../ajax/capacitacioncolaborador.php?op=selectCapacitacion", function (r) {
         $("#idcapacitacion").html(r);
         $("#idcapacitacion").selectpicker('refresh');
     })
@@ -24,16 +24,8 @@ function init() {
 //funcion limpiar
 
 function  limpiar() {
-    $("#fec_ven").val(" ");
-    $("#totalventa").val(" ");
-    $("#int_pvn_ven").val(" ");
-    $("#id_tpa_ven").val(" ");
-    $("#id_ciu_ven").val(" ");
-    $("#id_col_ven").val(" ");
-    $("#id_cli_ven").val(" ");
-    $("#imagenmuestra").attr("src","");
-    $("#imagenactual").val("");
-
+    $("#idcapacitacion").val(" ");
+    $("#idcolaborador").val(" ");
 
 }
 
@@ -48,7 +40,7 @@ function mostrarform(flag)
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
-        $("#btnagregar").hide();
+        $("#btnagregar").show();
 
     } else {
 
@@ -78,7 +70,7 @@ function listar()
                     'copyHtml5',
                     'excelHtml5',
                     'csvHtml5',
-                    'pdf'
+                    'pdf' 
                 ],
                 "ajax":
                         {
@@ -101,13 +93,13 @@ function guardaryeditar(e)
     var formData = new FormData($("#formulario")[0]);
 
     $.ajax({
-        url: "../../ajax/capacitacioncolaborador.php?op=guardaryeditar",
+            url: "../../ajax/capacitacioncolaborador.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
         processData: false,
 
-        success: function (datos)
+       success: function (datos)
         {
             bootbox.alert(datos);
             mostrarform(false);
@@ -115,7 +107,9 @@ function guardaryeditar(e)
         }
 
     });
+    
     limpiar();
+    
 }
 
 function mostrar(id_capcol) {

@@ -8,15 +8,15 @@ class CapacitacionColaborador
 // método para insertar una capacitacion de un colaborador
     public function insertar($id_cap_col,$id_cap_cap){
         
-        $sql ="INSERT INTO tbl_colaborador_capacitacion(id_cap_col,id_cap_cap)
-                Values ($id_cap_col,$id_cap_cap,'A')";
+        $sql ="INSERT INTO tbl_colaborador_capacitacion(id_cap_col,id_cap_cap,id_cap_cap_est)
+                Values ('$id_cap_col','$id_cap_cap','A')";
         
         return ejecutarConsulta($sql);
     }
     //mérodo para editar una capacitacion de un colaborador
     
-    public function editar($idcapcol, $id_cap_col,$id_cap_cap){
-        $sql="UPDATE tbl_colaborador_capacitacion SET id_cap_col='$id_cap_col',id_cap_cap='$id_cap_cap' WHERE id_capcol='$idcapcol'";
+    public function editar($id_capcol,$id_cap_col,$id_cap_cap){
+        $sql="UPDATE tbl_colaborador_capacitacion SET id_cap_col='$id_cap_col',id_cap_cap='$id_cap_cap' WHERE id_capcol='$id_capcol'";
 		return ejecutarConsulta($sql);
     }
     // método para cambiar de estado de una capacitacion de un colaborador
@@ -48,4 +48,8 @@ class CapacitacionColaborador
             INNER JOIN tbl_capacitacion ca ON cc.id_cap_cap=ca.id_cap";
 		return ejecutarConsulta($sql);	
 	}
+          public function eliminar($id_capcol){
+         $sql="DELETE FROM tbl_colaborador_capacitacion WHERE id_capcol ='$id_capcol'";
+        return ejecutarConsulta($sql);
+    }
 }

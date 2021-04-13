@@ -69,7 +69,7 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
-                
+                break;
             case 'selectColaborador':
             require_once'../models/Colaboradores.php';
             $colaboradores=new Colaboradores();
